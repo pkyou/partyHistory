@@ -34,10 +34,25 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
 
-      - name: Build Image
-        run: docker build -t pkyou/party-history .
-      - name: login docker
-        run: docker login --username=${{ secrets.DOCKERUSERNAME }} --password ${{ secrets.DOCKERPASSWORD }}
+#      - name: Build Image
+#        run: docker build -t pkyou/party-history .
+#      - name: login docker
+#        run: docker login --username=${{ secrets.DOCKERUSERNAME }} --password ${{ secrets.DOCKERPASSWORD }}
+#
+#      - name: Push Image
+#        run: docker push pkyou/party-history
 
-      - name: Push Image
-        run: docker push pkyou/party-history
+  deploy-docker:
+    needs: [ build ]
+    name: Deploy Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }} # 服务器ip
+          username: ${{ secrets.HOST_USERNAME }} # 服务器登录用户名
+          password: ${{ secrets.HOST_PASSWORD }} # 服务器登录密码
+          port: ${{ secrets.HOST_PORT }} # 服务器ssh端口
+          script: |
+            whoami
