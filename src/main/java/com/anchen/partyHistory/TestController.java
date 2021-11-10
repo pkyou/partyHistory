@@ -12,6 +12,6 @@ public class TestController {
 
     @GetMapping("/testMethod")
     public ResponseEntity<String> test (){
-        return new ResponseEntity<>("testing ",HttpStatus.OK );
+        return new ResponseEntity<>("修改一个中文， testing ",HttpStatus.OK );
     }
 }
