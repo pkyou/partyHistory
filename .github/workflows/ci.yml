@@ -39,5 +39,5 @@ jobs:
       - name: login docker
         run: docker login --username=${{ secrets.DOCKERUSERNAME }} --password ${{ secrets.DOCKERPASSWORD }}
 
-      -name: Push Image
-       run: docker push pkyou/party-history
+      - name: Push Image
+        run: docker push pkyou/party-history
