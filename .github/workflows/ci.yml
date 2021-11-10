@@ -34,6 +34,10 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
 
-      # Runs a set of commands using the runners shell
-      - name: this is just a echo
-        run: echo test, and deploy your project.
+      - name: Build Image
+        run: docker build -t pkyou/party-history .
+      - name: login docker
+        run: docker login --username=${{ secrets.DOCKERUSERNAME }} --password ${{ secrets.DOCKERPASSWORD }}
+
+      -name: Push Image
+       run: docker push pkyou/party-history

@@ -12,6 +12,6 @@ public class TestController {
 
     @GetMapping("/getScoringDetails")
     public ResponseEntity<String> test (){
-        return new ResponseEntity<>("tset ",HttpStatus.OK );
+        return new ResponseEntity<>("testing ",HttpStatus.OK );
     }
 }
