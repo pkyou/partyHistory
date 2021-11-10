@@ -56,3 +56,8 @@ jobs:
           port: ${{ secrets.HOST_PORT }} # 服务器ssh端口
           script: |
             whoami
+            docker stop party
+            docker rm party
+            docker rm pkyou/party-history
+            docker pull pkyou/party-history
+            docker run -d -p 8080:8080 --name party docker.io/pkyou/party-history:latest
