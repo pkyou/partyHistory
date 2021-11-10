@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "test")
 public class TestController {
 
-    @GetMapping("/getScoringDetails")
+    @GetMapping("/testMethod")
     public ResponseEntity<String> test (){
         return new ResponseEntity<>("testing ",HttpStatus.OK );
     }
